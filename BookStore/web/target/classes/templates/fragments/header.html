@@ -20,10 +20,23 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+               		<li sec:authorize="isAuthenticated()">
+               		<p class="hello"> Witaj  
+               			<b sec:authentication="name"></b>!
+               			</p>
+               		
+               			
+               			<div class="hello" sec:authentication="principal.authorities">User</div>
+               			 
+                	</li>
                     <li sec:authorize="isAuthenticated()"  style="display: inline-block;">
-                        <a th:action="@{/logout}" th:href="@{/}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
-                    <li  style="display: inline-block;"><a th:href="@{/login}"><span
-                            class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    	<form th:action="@{/logout}"  method="post" id="logout"></form>
+						<a href="#" onclick="document.getElementById('logout').submit()"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+					</li>
+                    <li sec:authorize="!isAuthenticated()" style="display: inline-block;">
+                    	<a th:href="@{/login}"><span
+                            class="glyphicon glyphicon-log-in"></span> Login</a>
+                    </li>
                 </ul>
             </div>
             <div>

@@ -13,7 +13,9 @@ public class LoginController {
 	@GetMapping(value = "/login")
 	public String welcome(@RequestParam(value = "error", defaultValue = "") String error, Model model) {
 
-		model.addAttribute("error", error);
+		if (error.equals("true")) {
+			model.addAttribute("error", error);
+		}
 
 		return ViewNames.LOGIN;
 	}

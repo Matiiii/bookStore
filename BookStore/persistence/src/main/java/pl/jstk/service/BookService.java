@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import pl.jstk.to.BookAndInfoTo;
 import pl.jstk.to.BookTo;
 
 public interface BookService {
@@ -20,4 +21,6 @@ public interface BookService {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	void deleteBook(Long id);
+
+	BookAndInfoTo findBookByManyParametersWithInformation(String author, String title);
 }

@@ -10,8 +10,8 @@ import pl.jstk.constants.ViewNames;
 @Controller
 public class HomeController {
 
-	private static final String INFO_TEXT = "Here You shall display information containing information about newly created TO";
-	protected static final String WELCOME = "This is a welcome page";
+	private static final String INFO_TEXT = "Enjoy newly positions!";
+	protected static final String WELCOME = "Capgemini Book Store";
 
 	@GetMapping(value = "/")
 	public String welcome(Model model) {

@@ -1,5 +1,6 @@
 package pl.jstk.config;
 
+import org.springframework.boot.web.servlet.filter.OrderedHiddenHttpMethodFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -22,11 +23,9 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/", "/books/book*", "/books*", "/login*", "/books/deleteBook", "/css/**", "/img/*",
-						"/css*", "/css/", "/css/*")
+		http.authorizeRequests().antMatchers("/", "/webjars/**", "/img/*", "/css/*", "/books", "/books/book*")
 				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
-				.defaultSuccessUrl("/books").failureUrl("/login?error=true").and().logout().permitAll();
+				.defaultSuccessUrl("/").failureUrl("/login?error=true").and().logout().permitAll();
 
 	}
 
@@ -35,4 +34,8 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
+	@Bean
+	public OrderedHiddenHttpMethodFilter hiddenHttpMethodFilter() {
+		return new OrderedHiddenHttpMethodFilter();
+	}
 }

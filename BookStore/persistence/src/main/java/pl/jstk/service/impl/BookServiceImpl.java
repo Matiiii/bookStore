@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.jstk.entity.BookEntity;
 import pl.jstk.mapper.BookMapper;
+import pl.jstk.model.Information;
 import pl.jstk.repository.BookRepository;
 import pl.jstk.service.BookService;
+import pl.jstk.to.BookAndInfoTo;
 import pl.jstk.to.BookTo;
 
 @Service
@@ -57,6 +59,34 @@ public class BookServiceImpl implements BookService {
 	public BookTo getOneById(Long id) {
 
 		return BookMapper.map(bookRepository.getOne(id));
+	}
+
+	@Override
+	public BookAndInfoTo findBookByManyParametersWithInformation(String author, String title) {
+
+		List<BookTo> listBookTo = null;
+
+		if ("".equals(title) && !("".equals(author))) {
+
+			listBookTo = findBooksByAuthor(author);
+
+		} else if ("".equals(author) && !("".equals(title))) {
+
+			listBookTo = findBooksByTitle(title);
+
+		} else if (!"".equals(author) && !("".equals(title))) {
+
+			List<BookEntity> filteredList = bookRepository.findBookByTitle(title);
+			filteredList.retainAll(bookRepository.findBookByAuthor(author));
+			listBookTo = BookMapper.map2To(filteredList);
+
+		}
+
+		String books = (listBookTo.size() == 1) ? " book" : " books";
+		Information info = new Information("Found " + listBookTo.size() + books + " match to : " + title + " " + author,
+				!listBookTo.isEmpty());
+
+		return new BookAndInfoTo(info, listBookTo);
 	}
 
 }
