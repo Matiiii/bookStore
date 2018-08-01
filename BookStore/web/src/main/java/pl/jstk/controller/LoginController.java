@@ -1,7 +1,9 @@
 package pl.jstk.controller;
 
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,6 +20,12 @@ public class LoginController {
 		}
 
 		return ViewNames.LOGIN;
+	}
+
+	@ExceptionHandler({ AccessDeniedException.class })
+	public String accessDenied(Model model) {
+		model.addAttribute("error", "Access denied. You are not allowed to delete book");
+		return ViewNames.ACCES_DENIED;
 	}
 
 }

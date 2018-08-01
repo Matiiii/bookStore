@@ -67,7 +67,7 @@
                         <p th:text="${book.authors}"></p>
                         <p th:text="${book.status}">Status: </p>
                         <p>
-                            <a th:href="@{'/books/book?id='+${book.id}}"
+                            <a th:href="@{'/books/book/'+${book.id}}"
                                class="btn btn-primary"> <span
                                     class="glyphicon-info-sign glyphicon"/></span> Details
                             </a>
@@ -77,8 +77,8 @@
                         
                        
                        
-                       		<form th:method="delete" th:action="@{/books/deleteBook}">
-                                 <input type="hidden" name="id" th:value="${book.id}" />
+                       		<form th:method="delete" th:action="@{'/books/book/'+${book.id}}">
+                                 <input type="hidden" name="id"  />
                                  
                                  <button  sec:authorize="hasAnyRole('ADMIN','USER')" class="btn btn-danger" type="submit">Delete</button>
                                  

@@ -9,10 +9,14 @@
 <div layout:fragment="content" th:remove="tag">
 <section>
     <div class="jumbotron">
-        <div class="container">
-            <h1>Error</h1>
-            <p>${error}</p>
+    <center>
+        <div class="container center">
+       		 <p aling="center"><b sec:authentication="name"></b>! You do not have permission to access!</p>
+        	<img alt="Error" src="http://www.safetysign.com/images/source/large-images/F3763.png">
+            <br>
+            
         </div>
+    </center>
     </div>
 </section>
 </div>
