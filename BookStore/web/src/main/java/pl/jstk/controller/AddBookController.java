@@ -1,6 +1,7 @@
 package pl.jstk.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ public class AddBookController {
 	private static final String INFO_TEXT = "Here You shall display information containing information about newly created TO";
 	protected static final String WELCOME = "This is a welcome page";
 
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	@GetMapping(value = "/books/add")
 	public String viewBook(Model model) {
 		model.addAttribute("newBook", new BookTo());

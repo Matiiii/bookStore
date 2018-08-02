@@ -20,7 +20,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -75,10 +74,6 @@ public class BookControllerTest {
 				.andExpect(model().attribute("bookList", bookService.findAllBooks()))
 				.andExpect(content().string(containsString("")));
 
-		// .andDo(print())
-		// .andExpect(model().attribute("bookList", bookService.findAllBooks()))
-		// .andExpect(content().string(containsString("")));
-
 	}
 
 	@Test
@@ -99,16 +94,6 @@ public class BookControllerTest {
 								.getListBookTo()))
 				.andExpect(model().attribute("information", bookService
 						.findBookByManyParametersWithInformation(Mockito.anyString(), Mockito.anyString()).getInfo()));
-	}
-
-	@Test
-	@WithMockUser(username = "john", roles = { "ADMIN" })
-	public void schouldDeleteBook() throws Exception {
-		// given
-
-		// when
-		// ResultActions resultActions = mockMvc.perform(delete("/books"));
-		// then
 	}
 
 }

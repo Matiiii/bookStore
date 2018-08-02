@@ -3,13 +3,11 @@ package pl.jstk.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pl.jstk.constants.ModelConstants;
 import pl.jstk.constants.ViewNames;
-import pl.jstk.model.Information;
 import pl.jstk.service.BookService;
 
 @Controller
@@ -36,14 +34,6 @@ public class BookController {
 					bookService.findBookByManyParametersWithInformation(author, title).getInfo());
 		}
 
-		return ViewNames.BOOKS;
-	}
-
-	@DeleteMapping(value = "/books")
-	public String deleteBookButton2(@RequestParam("id") Long id, Model model) {
-		bookService.deleteBook(id);
-		model.addAttribute("information", new Information("Book is corectly deleted", true));
-		model.addAttribute("bookList", bookService.findAllBooks());
 		return ViewNames.BOOKS;
 	}
 
