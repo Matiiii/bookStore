@@ -13,7 +13,7 @@ import pl.jstk.constants.ViewNames;
 public class LoginController {
 
 	@GetMapping(value = "/login")
-	public String welcome(@RequestParam(value = "error", defaultValue = "") String error, Model model) {
+	public String showLoginPage(@RequestParam(value = "error", defaultValue = "") String error, Model model) {
 
 		if (error.equals("true")) {
 			model.addAttribute("error", error);

@@ -25,14 +25,14 @@ public class AddBookController {
 
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	@GetMapping(value = "/books/add")
-	public String viewBook(Model model) {
+	public String viewAddBookForm(Model model) {
 		model.addAttribute("newBook", new BookTo());
 		model.addAttribute(ModelConstants.MESSAGE, WELCOME);
 		model.addAttribute(ModelConstants.INFO, INFO_TEXT);
 		return ViewNames.ADD_BOOK;
 	}
 
-	@PostMapping(value = "/greeting")
+	@PostMapping(value = "/books/add")
 	public String addBook(@ModelAttribute BookTo newBook, Model model) {
 		if (!newBook.getAuthors().isEmpty() && !newBook.getTitle().isEmpty()) {
 			bookService.saveBook(newBook);

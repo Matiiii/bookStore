@@ -77,7 +77,7 @@ public class BookControllerTest {
 	}
 
 	@Test
-	public void schoulsShowsBooks2() throws Exception {
+	public void shouldShowsBooks2() throws Exception {
 		// given
 		List<BookTo> books = new ArrayList<>();
 		books.add(new BookTo());

@@ -19,7 +19,7 @@ public class BookController {
 	protected static final String WELCOME = "Capgemini Book Store";
 
 	@GetMapping(value = "/books")
-	public String welcome(@RequestParam(value = "author", defaultValue = "") String author,
+	public String showBooksPage(@RequestParam(value = "author", defaultValue = "") String author,
 			@RequestParam(value = "title", defaultValue = "") String title, Model model) {
 		model.addAttribute(ModelConstants.MESSAGE, WELCOME);
 		model.addAttribute(ModelConstants.INFO, INFO_TEXT);

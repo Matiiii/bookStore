@@ -49,7 +49,7 @@ public class AddBookControllerTest {
 	}
 
 	@Test
-	public void schoulsShowsBook() throws Exception {
+	public void shouldShowsBook() throws Exception {
 		// given
 
 		// when
@@ -61,7 +61,7 @@ public class AddBookControllerTest {
 
 	@Test
 	@WithMockUser(username = "john", roles = { "" })
-	public void schouldGive403Exception() {
+	public void shouldGive403Exception() {
 		// given
 
 		// when
@@ -82,7 +82,7 @@ public class AddBookControllerTest {
 
 	@Test
 	@WithMockUser(username = "john", roles = { "USER" })
-	public void schouldSchowAddBookView() throws Exception {
+	public void shouldSchowAddBookView() throws Exception {
 		// given
 
 		// when
@@ -95,16 +95,15 @@ public class AddBookControllerTest {
 
 	@Test
 	@WithMockUser(username = "john", roles = { "USER" })
-	public void schouldAddBook() throws Exception {
+	public void shouldAddBook() throws Exception {
 		// given
 
 		// when
-		ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/greeting")
+		ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/books/add")
 				.param("title", "Jak zrobic post request test").param("authors", "Mateusz Kaczmarek")
 				.param("status", "LOAN").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
 
 		// then
-
 		resultActions.andExpect(status().isOk()).andExpect(view().name(ViewNames.ADD_BOOK));
 	}
 

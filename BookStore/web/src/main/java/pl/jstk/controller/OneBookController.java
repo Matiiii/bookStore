@@ -33,7 +33,7 @@ public class OneBookController {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping(value = "/books/book/{id}")
-	public String deleteBookButton2(@PathVariable Long id, Model model) {
+	public String deleteBookButton(@PathVariable Long id, Model model) {
 		bookService.deleteBook(id);
 		model.addAttribute("information", new Information("Book is corectly deleted", true));
 		model.addAttribute("bookList", bookService.findAllBooks());

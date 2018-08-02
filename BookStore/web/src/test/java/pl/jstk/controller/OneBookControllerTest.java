@@ -50,7 +50,7 @@ public class OneBookControllerTest {
 	}
 
 	@Test
-	public void schoulsShowsBook() throws Exception {
+	public void shoulsShowsBook() throws Exception {
 		// given
 
 		// when
@@ -62,7 +62,7 @@ public class OneBookControllerTest {
 
 	@Test
 	@WithMockUser(username = "john", roles = { "ADMIN" })
-	public void schouldDeleteBook() throws Exception {
+	public void shouldDeleteBook() throws Exception {
 		// given
 
 		// when
@@ -76,7 +76,7 @@ public class OneBookControllerTest {
 
 	@Test
 	@WithMockUser(username = "john", roles = { "USER" })
-	public void schouldGive403Exception() throws Exception {
+	public void shouldGive403Exception() throws Exception {
 		// given
 
 		// when
@@ -85,6 +85,7 @@ public class OneBookControllerTest {
 		try {
 			resultActions = mockMvc.perform(MockMvcRequestBuilders.delete("/books/book/2")
 					.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
+			// .andDo(MockMvcResultHandlers.print()).andExpect(status().is4xxClientError());
 
 		} catch (Exception e) {
 
